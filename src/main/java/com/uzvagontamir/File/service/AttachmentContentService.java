@@ -19,4 +19,8 @@ public class AttachmentContentService {
     public Optional<AttachmentContent> findByAttachmentId(Integer id) {
         return contentRepository.findByAttachmentId(id);
     }
+
+    public void deleteById(Integer id) {
+        contentRepository.deleteById(id);
+    }
 }

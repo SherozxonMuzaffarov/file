@@ -24,4 +24,8 @@ public class AttachmentService {
     public List<Attachment> findAll() {
         return attachmentRepository.findAll();
     }
+
+    public void deleteById(Integer id) {
+        attachmentRepository.deleteById(id);
+    }
 }

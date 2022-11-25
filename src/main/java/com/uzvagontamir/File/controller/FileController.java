@@ -102,11 +102,11 @@ public class FileController {
                 FileCopyUtils.copy(attachmentContent.getMainContent(), response.getOutputStream());
             }
         }
-
     }
 
     @GetMapping("/openFile/{id}")
     public void openFile(@PathVariable Integer id, HttpServletResponse response) throws IOException {
+
         Optional<Attachment> optionalAttachment = attachmentService.findById(id);
         if (optionalAttachment.isPresent()) {
             Attachment attachment = optionalAttachment.get();
@@ -123,6 +123,7 @@ public class FileController {
 
                 //file contentini berish uchun
                 FileCopyUtils.copy(attachmentContent.getMainContent(), response.getOutputStream());
+
             }
         }
     }
@@ -134,22 +135,12 @@ public class FileController {
             Attachment attachment = optionalAttachment.get();
             Optional<AttachmentContent> contentOptional = contentService.findByAttachmentId(id);
             if (contentOptional.isPresent()){
-                AttachmentContent attachmentContent = contentOptional.get();
+                AttachmentContent attachmentContent =  contentOptional.get();
 
-//                //fileni nomini berish uchun
-//                response.setHeader("Content-Disposition",
-//                        "inline;fileName=\"" + attachment.getFileOriginalName()+"\"");
-//
-//                //file typeni berish uchun
-//                response.setContentType(attachment.getContentType());
-//
-//                //file contentini berish uchun
-//                FileCopyUtils.copy(attachmentContent.getMainContent(), response.getOutputStream());
             }
             model.addAttribute("file", attachment);
         }
 
         return "open_file";
     }
-
 }
